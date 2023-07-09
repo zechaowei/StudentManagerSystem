@@ -1,0 +1,3 @@
+/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/cmake-build-debug/CMakeFiles/StudentManagerSystem.dir
+/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
