@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "StudentManagerSystem.h"
-#include "stdlib.h"
+#include <stdlib.h>
+#include <string.h>
 
 int main() {
     while (1) {
@@ -9,32 +10,27 @@ int main() {
         scanf(" %c", &ch);  // 在%c之前添加空格,必不可少的空格
 
         switch (ch) {
-            case '1':
-                InputStudent(); // 录入学生信息
+            case '1':   // 录入学生信息
+                InputStudent();
                 break;
-            case '2':
-                PrintStudent(); // 打印学生信息
+            case '2':   // 打印学生信息
+                PrintStudent();
                 break;
-            case '3':
-                SaveStudent();  // 保存学生信息
+            case '3':   // 保存学生信息
+                SaveStudent();
                 break;
-            case '4':
-                // 读取学生信息
+            case '4':   // 读取学生信息
+                ReadStudent();
                 break;
-            case '5':
-                // 统计所有学生人数
+            case '5':   // 统计所有学生人数
                 break;
-            case '6':
-                // 查找学生信息
+            case '6':   // 查找学生信息
                 break;
-            case '7':
-                // 修改学生信息
+            case '7':   // 修改学生信息
                 break;
-            case '8':
-                // 删除学生信息
+            case '8':   // 删除学生信息
                 break;
-            case '0':
-                // 退出系统
+            case '0':   // 退出系统
                 break;
         }
     }
@@ -110,15 +106,15 @@ void SaveStudent() {
     //打开文件
     FILE *fp = fopen("/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/data.csv", "w");
 
-    if (fp == NULL){
+    if (fp == NULL) {
         printf("文件打开失败.\n");
         return;
     }
 
     //遍历链表
-    Node* p = head;
-    while (p != NULL){
-        fwrite(&p->student,1,sizeof(Student),fp);
+    Node *p = head;
+    while (p != NULL) {
+        fwrite(&p->student, 1, sizeof(Student), fp);
         p = p->next;
     }
 
@@ -128,4 +124,39 @@ void SaveStudent() {
 
 //    system("pause");          //win暂停
 //    system("cls");            //win清屏
+}
+
+//读取学生信息
+void ReadStudent() {
+    //打开文件
+    FILE *fp = fopen("/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/data.csv", "r");
+    if (fp == NULL) {
+        printf("文件打开失败.\n");
+        return;
+    }
+
+    Student stu;
+    //读文件
+    while (fread(&stu, 1, sizeof(Student), fp)) {
+        //创建一个新的节点
+        Node *pNewNode = (Node *) malloc(sizeof(Node));
+
+
+        pNewNode->next = NULL;
+
+        memcpy(pNewNode, &stu, sizeof(Student));
+
+        //头插法
+        if (head == NULL) {
+            head = pNewNode;
+        } else {
+            pNewNode->next = head;
+            head = pNewNode;
+        }
+    }
+    //关闭文件
+    fclose(fp);
+    //    system("pause");          //win暂停
+    //    system("cls");            //win清屏
+    printf("加载数据成功.\n");
 }

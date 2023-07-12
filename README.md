@@ -78,7 +78,7 @@ while (1) {
 
 
 
-## InputStudent函数
+## 录入学生信息
 
 ```c
 void InputStudent() {
@@ -126,7 +126,7 @@ scanf(" %c", &ch);  // 在%c之前添加空格,必不可少的空格
 
 
 
-## PrintStudent函数
+## 打印学生信息
 
 打印学生信息函数
 
@@ -156,7 +156,7 @@ void PrintStudent() {
 
 > ⚠️：在输入姓名或者学号的时候，尽可能的短，不是程序会出现bug，而是最后打印出来的效果不是很美观。大家可以自己尝试一下，这里不做过多演示操作了。
 
-## SaveStudent函数
+## 保存学生信息
 
 保存学生信息函数
 
@@ -187,3 +187,95 @@ void SaveStudent() {
 ```
 
 ![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E4%BF%9D%E5%AD%98%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF.gif)
+
+
+
+
+
+
+
+## 读取学生信息
+
+```c
+void ReadStudent() {
+    //打开文件
+    FILE *fp = fopen("/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/data.csv", "r");
+    if (fp == NULL) {
+        printf("文件打开失败.\n");
+        return;
+    }
+
+    Student stu;
+    //读文件
+    while (fread(&stu, 1, sizeof(Student), fp)) {
+        //创建一个新的节点
+        Node *pNewNode = (Node *) malloc(sizeof(Node));
+
+
+        pNewNode->next = NULL;
+
+        memcpy(pNewNode, &stu, sizeof(Student));
+
+        //头插法
+        if (head == NULL) {
+            head = pNewNode;
+        } else {
+            pNewNode->next = head;
+            head = pNewNode;
+        }
+    }
+    //关闭文件
+    fclose(fp);
+    //    system("pause");          //win暂停
+    //    system("cls");            //win清屏
+    printf("加载数据成功.\n");
+}
+```
+
+![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E8%AF%BB%E5%8F%96%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF.gif)
+
+首先，我们正常演示，录入学生信息（这里录入两个学生信息），然后选择打印学生信息，结果显示出学生信息录入，最后选择保存学生信息，将学生信息写入到文件中（我这里写入到`data.csv`中）。然后重新运行程序，选择 4 读取学生信息，然后按 2 打印学生信息，此时就可以看见学生信息了；如果重新运行程序后，没有选择读取学生信息，直接打印学生信息，不会展示任何结果。（`gif`动画中已经全部演示过了，仔细观看）
+
+
+
+
+
+
+
+
+
+## 统计所有学生人数
+
+
+
+
+
+
+
+## 查找学生信息
+
+
+
+
+
+
+
+
+
+## 修改学生信息
+
+
+
+
+
+
+
+## 删除学生信息
+
+
+
+
+
+
+
+## 退出系统
