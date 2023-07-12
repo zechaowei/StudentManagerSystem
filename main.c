@@ -15,6 +15,7 @@ int main() {
                 InputStudent();
                 break;
             case '2'://打印学生信息
+                PrintStudent();
                 break;
             case '3'://保存学生信息
                 break;
@@ -35,11 +36,6 @@ int main() {
 }
 
 
-void clearInputBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
-
 void Welcome() {
     printf("*************************************\n");
     printf("*\t欢迎使用高校学生成绩管理系统v1.0\t*\n");
@@ -58,27 +54,44 @@ void Welcome() {
 
 
 void InputStudent() {
-    Node* pNewNode =  malloc(sizeof (Node));        //创建新的节点
-    pNewNode->pNext = NULL;
+    Node *pNewNode = malloc(sizeof(Node));        //创建新的节点
+    pNewNode->next = NULL;
 
     //插入-----> 头插法、尾插法
     //头插法
-    if (head == NULL){
+    if (head == NULL) {
         head = pNewNode;
-    } else{
-        pNewNode->pNext = head;  //采用头插法，将新创建的节点加入到头节点前面
+    } else {
+        pNewNode->next = head;  //采用头插法，将新创建的节点加入到头节点前面
         head = pNewNode;         //将新创建的节点设置为头节点
     }
 
     printf("请输入学生姓名：\n");
-    scanf("%s",pNewNode->student.name);     //不需要设置&符号，name是数组
+    scanf("%s", pNewNode->student.name);     //不需要设置&符号，name是数组
     printf("请输入学生年龄：\n");
-    scanf("%d",&pNewNode->student.age);     //设置&符号，name是数组
+    scanf("%d", &pNewNode->student.age);     //设置&符号，name是数组
     printf("请输入学生学号：\n");
-    scanf("%s",pNewNode->student.stuNum);
+    scanf("%s", pNewNode->student.stuNum);
     printf("请输入学生成绩：\n");
-    scanf("%d",&pNewNode->student.score);
+    scanf("%d", &pNewNode->student.score);
 
     printf("学生信息录入成功.\n");
     system("clear");    //清屏
+}
+
+void PrintStudent() {
+    printf("*************************************\n");
+    printf("*\t欢迎使用高校学生成绩管理系统v1.0\t*\n");
+    printf("*************************************\n");
+
+    //遍历链表  ----> 单链表
+    Node *p = head;
+    while (p != NULL) {
+        printf("*\t%s\t*\t%s\t*\t%d\t*\t%d*\n", p->student.stuNum, p->student.name, p->student.age, p->student.score);
+        p = p->next;
+    }
+    printf("*************************************\n");
+//    system("pause");        //win暂停
+//    system("cls");          //win清屏
+    system("clear");        //mac清屏
 }

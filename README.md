@@ -83,14 +83,14 @@ while (1) {
 ```c
 void InputStudent() {
     Node* pNewNode =  malloc(sizeof (Node));        //创建新的节点
-    pNewNode->pNext = NULL;
+    pNewNode->next = NULL;
 
     //插入-----> 头插法、尾插法
     //头插法
     if (head == NULL){
         head = pNewNode;
     } else{
-        pNewNode->pNext = head;  //采用头插法，将新创建的节点加入到头节点前面
+        pNewNode->next = head;  //采用头插法，将新创建的节点加入到头节点前面
         head = pNewNode;         //将新创建的节点设置为头节点
     }
 
@@ -110,6 +110,5 @@ void InputStudent() {
 
 ![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E5%BD%95%E5%85%A5%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9D%97.gif)
 
-
-
+需要注意的是，在编写到这一步时，就出现了一个 bug，即当我们输入第一组数据后，我们选择继续录入学生信息，此时我们从键盘输入 1 后，按住回车，控制台并没有让我们根据系统提示输入相对应的信息，反而不断的打印 welcome() 函数内容。这里暂时不做解决，因为，我也不会。
 
