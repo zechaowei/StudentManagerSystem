@@ -6,30 +6,36 @@ int main() {
     while (1) {
         Welcome();      //欢迎界面
         char ch;
-        scanf("%c", &ch);
-        getchar(); // 清空输入缓冲区中的换行符
-
+        scanf(" %c", &ch);  // 在%c之前添加空格,必不可少的空格
 
         switch (ch) {
-            case '1'://录入学生信息
-                InputStudent();
+            case '1':
+                InputStudent(); // 录入学生信息
                 break;
-            case '2'://打印学生信息
-                PrintStudent();
+            case '2':
+                PrintStudent(); // 打印学生信息
+                fflush(stdout); // 刷新标准输出流
                 break;
-            case '3'://保存学生信息
+            case '3':
+                // 保存学生信息
                 break;
-            case '4'://读取学生信息
+            case '4':
+                // 读取学生信息
                 break;
-            case '5'://统计所有学生人数
+            case '5':
+                // 统计所有学生人数
                 break;
-            case '6'://查找学生信息
+            case '6':
+                // 查找学生信息
                 break;
-            case '7'://修改学生信息
+            case '7':
+                // 修改学生信息
                 break;
-            case '8'://删除学生信息
+            case '8':
+                // 删除学生信息
                 break;
-            case '0'://退出系统
+            case '0':
+                // 退出系统
                 break;
         }
     }
@@ -76,18 +82,22 @@ void InputStudent() {
     scanf("%d", &pNewNode->student.score);
 
     printf("学生信息录入成功.\n");
+    //    system("pause");        //win暂停
+    //    system("cls");          //win清屏
     system("clear");    //清屏
 }
 
 void PrintStudent() {
+    system("clear");
     printf("*************************************\n");
     printf("*\t欢迎使用高校学生成绩管理系统v1.0\t*\n");
     printf("*************************************\n");
+    printf("*\t学号\t*\t姓名\t*\t年龄\t*\t成绩\t*\n");
 
     //遍历链表  ----> 单链表
     Node *p = head;
     while (p != NULL) {
-        printf("*\t%s\t*\t%s\t*\t%d\t*\t%d*\n", p->student.stuNum, p->student.name, p->student.age, p->student.score);
+        printf("*\t%s\t\t*\t%s\t*\t%d\t\t*\t%d\t\t*\n", p->student.stuNum, p->student.name, p->student.age, p->student.score);
         p = p->next;
     }
     printf("*************************************\n");
