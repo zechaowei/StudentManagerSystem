@@ -28,3 +28,4 @@ Node *head = NULL;   //定义头节点
 void Welcome();             //欢迎界面
 void InputStudent();        //输入学生信息
 void PrintStudent();        //打印学生信息
+void SaveStudent();         //保存学生信息

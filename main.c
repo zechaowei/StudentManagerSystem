@@ -14,10 +14,9 @@ int main() {
                 break;
             case '2':
                 PrintStudent(); // 打印学生信息
-                fflush(stdout); // 刷新标准输出流
                 break;
             case '3':
-                // 保存学生信息
+                SaveStudent();  // 保存学生信息
                 break;
             case '4':
                 // 读取学生信息
@@ -97,11 +96,36 @@ void PrintStudent() {
     //遍历链表  ----> 单链表
     Node *p = head;
     while (p != NULL) {
-        printf("*\t%s\t\t*\t%s\t*\t%d\t\t*\t%d\t\t*\n", p->student.stuNum, p->student.name, p->student.age, p->student.score);
+        printf("*\t%s\t\t*\t%s\t*\t%d\t\t*\t%d\t\t*\n", p->student.stuNum, p->student.name, p->student.age,
+               p->student.score);
         p = p->next;
     }
     printf("*************************************\n");
 //    system("pause");        //win暂停
 //    system("cls");          //win清屏
     system("clear");        //mac清屏
+}
+
+void SaveStudent() {
+    //打开文件
+    FILE *fp = fopen("/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/data.csv", "w");
+
+    if (fp == NULL){
+        printf("文件打开失败.\n");
+        return;
+    }
+
+    //遍历链表
+    Node* p = head;
+    while (p != NULL){
+        fwrite(&p->student,1,sizeof(Student),fp);
+        p = p->next;
+    }
+
+    //关闭文件
+    fclose(fp);
+    printf("\n数据保存成功.\n");
+
+//    system("pause");          //win暂停
+//    system("cls");            //win清屏
 }

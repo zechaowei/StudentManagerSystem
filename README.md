@@ -118,5 +118,72 @@ void InputStudent() {
 scanf(" %c", &ch);  // 在%c之前添加空格,必不可少的空格
 ```
 
+测试案例
+
+![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E6%89%93%E5%8D%B0%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9D%97.gif)
+
+打印出来格式可能不是那么的美观，大家可以自己调整成自己喜欢的模样。
 
 
+
+## PrintStudent函数
+
+打印学生信息函数
+
+```c
+void PrintStudent() {
+    system("clear");
+    printf("*************************************\n");
+    printf("*\t欢迎使用高校学生成绩管理系统v1.0\t*\n");
+    printf("*************************************\n");
+    printf("*\t学号\t*\t姓名\t*\t年龄\t*\t成绩\t*\n");
+
+    //遍历链表  ----> 单链表
+    Node *p = head;
+    while (p != NULL) {
+        printf("*\t%s\t\t*\t%s\t*\t%d\t\t*\t%d\t\t*\n", p->student.stuNum, p->student.name, p->student.age,
+               p->student.score);
+        p = p->next;
+    }
+    printf("*************************************\n");
+//    system("pause");        //win暂停
+//    system("cls");          //win清屏
+    system("clear");        //mac清屏
+}
+```
+
+![](https://raw.githubusercontent.com/zechaowei/photos_blog/main/img/%E6%89%93%E5%8D%B0%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9D%97.gif)
+
+> ⚠️：在输入姓名或者学号的时候，尽可能的短，不是程序会出现bug，而是最后打印出来的效果不是很美观。大家可以自己尝试一下，这里不做过多演示操作了。
+
+## SaveStudent函数
+
+保存学生信息函数
+
+```c
+void SaveStudent() {
+    //打开文件
+    FILE *fp = fopen("/Users/zechaowei/Documents/003-Project/008-C/StudentManagerSystem/data.csv", "w");
+
+    if (fp == NULL){
+        printf("文件打开失败.\n");
+        return;
+    }
+
+    //遍历链表
+    Node* p = head;
+    while (p != NULL){
+        fwrite(&p->student,1,sizeof(Student),fp);
+        p = p->next;
+    }
+
+    //关闭文件
+    fclose(fp);
+    printf("\n数据保存成功.\n");
+
+//    system("pause");          //win暂停
+//    system("cls");            //win清屏
+}
+```
+
+![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E4%BF%9D%E5%AD%98%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF.gif)
