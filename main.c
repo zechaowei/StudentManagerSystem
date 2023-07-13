@@ -23,6 +23,10 @@ int main() {
                 ReadStudent();
                 break;
             case '5':   // 统计所有学生人数
+                printf("学生总数为：%d\n",CountStudent());
+                system("clear");        //mac清屏
+//                system("pause");        //win暂停
+//                system("cls");          //win清屏
                 break;
             case '6':   // 查找学生信息
                 break;
@@ -159,4 +163,18 @@ void ReadStudent() {
     //    system("pause");          //win暂停
     //    system("cls");            //win清屏
     printf("加载数据成功.\n");
+}
+
+
+int CountStudent(){
+    int count = 0; //学生总数
+
+    //遍历
+    Node *p = head;
+    while (p != NULL){
+        count++;
+        p = p->next;
+    }
+
+    return count;
 }

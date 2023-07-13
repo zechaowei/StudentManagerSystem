@@ -30,3 +30,4 @@ void InputStudent();        //输入学生信息
 void PrintStudent();        //打印学生信息
 void SaveStudent();         //保存学生信息
 void ReadStudent();         //读取学生信息
+int CountStudent();         //统计所有学生人数

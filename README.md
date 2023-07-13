@@ -246,7 +246,26 @@ void ReadStudent() {
 
 ## 统计所有学生人数
 
+```c
+int CountStudent(){
+    int count = 0; //学生总数
 
+    //遍历
+    Node *p = head;
+    while (p != NULL){
+        count++;
+        p = p->next;
+    }
+
+    return count;
+}
+```
+
+设计思路：使用单链表保存学生信息，因此每一个节点代表一个学生，只需要统计有多少个节点即可。前面已经经常执行遍历节点操作，因此只需要在遍历过程中增加一个 `count 计数器`统计节点数即可解决这个问题。
+
+![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%94%9F%E6%80%BB%E6%95%B0.gif)
+
+输入两个测试案例，并且执行了前面的功能，功能正常；然后点击保存学习信息，这样在结束程序后，再次运行程序后，读取学生数据后，即可再次统计学生，如果没有点击读取学生信息，则统计的学生的人数为 0。（以上描述均已演示，自行观看）
 
 
 
