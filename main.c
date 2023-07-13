@@ -23,13 +23,22 @@ int main() {
                 ReadStudent();
                 break;
             case '5':   // 统计所有学生人数
-                printf("学生总数为：%d\n",CountStudent());
+                printf("学生总数为：%d\n", CountStudent());
                 system("clear");        //mac清屏
 //                system("pause");        //win暂停
 //                system("cls");          //win清屏
                 break;
             case '6':   // 查找学生信息
+            {
+                Node *p = FindStudent();
+                if (p != NULL) {
+                    printf("学号：%s\t姓名：%s\t年龄：%d\t成绩：%d\t\n", p->student.stuNum, p->student.name, p->student.age,
+                           p->student.score);
+                } else {
+                    printf("查无此人！\n");
+                }
                 break;
+            }
             case '7':   // 修改学生信息
                 break;
             case '8':   // 删除学生信息
@@ -166,15 +175,34 @@ void ReadStudent() {
 }
 
 
-int CountStudent(){
+int CountStudent() {
     int count = 0; //学生总数
 
     //遍历
     Node *p = head;
-    while (p != NULL){
+    while (p != NULL) {
         count++;
         p = p->next;
     }
 
     return count;
+}
+
+Node *FindStudent() {
+    char nStuNum[20];
+    char nStuName[20];
+    printf("请输入需要查找的学生的学号:\n");
+    scanf("%s", nStuNum);
+    printf("请输入需要查找的学生的姓名:\n");
+    scanf("%s", nStuName);
+
+    Node *p = head;
+    while (p != NULL) {
+        if (0 == strcmp(p->student.name, nStuName) && 0 == strcmp(p->student.stuNum, nStuNum)) {
+            return p;
+        }
+        p = p->next;
+    }
+
+    return NULL;
 }

@@ -11,10 +11,10 @@
 
 //定义一个学生
 typedef struct _Student{
-    char name[20];  //姓名
-    int age;        //年龄
-    char stuNum[64];     //学号
-    int score;      //成绩
+    char name[20];      //姓名
+    int age;            //年龄
+    char stuNum[20];    //学号(也可以设置为int类型)
+    int score;          //成绩
 }Student;
 
 
@@ -31,3 +31,4 @@ void PrintStudent();        //打印学生信息
 void SaveStudent();         //保存学生信息
 void ReadStudent();         //读取学生信息
 int CountStudent();         //统计所有学生人数
+Node* FindStudent();        //查找学生

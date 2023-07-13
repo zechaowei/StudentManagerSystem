@@ -273,11 +273,32 @@ int CountStudent(){
 
 ## 查找学生信息
 
+```c
+Node *FindStudent() {
+    char nStuNum[20];
+    char nStuName[20];
+    printf("请输入需要查找的学生的学号:\n");
+    scanf("%s", nStuNum);
+    printf("请输入需要查找的学生的姓名:\n");
+    scanf("%s", nStuName);
 
+    Node *p = head;
+    while (p != NULL) {
+        if (0 == strcmp(p->student.name, nStuName) && 0 == strcmp(p->student.stuNum, nStuNum)) {
+            return p;
+        }
+        p = p->next;
+    }
 
+    return NULL;
+}
+```
 
+利用学生的姓名和学号共同查找学生的信息，只有输入的学号和姓名同时匹配才会输出结果，否则显示查无此人。
 
+![](https://raw.githubusercontent.com/Anson-zechaoWei/photos_blog/main/img/%E6%9F%A5%E6%89%BE%E5%AD%A6%E7%94%9F%E4%BF%A1%E6%81%AF.gif)
 
+该段C语言程序实现了一项学生信息查询功能。当用户输入学生的学号和姓名时，程序会读取已保存的学生信息文件，并与输入的学号和姓名进行匹配。如果找到匹配的学生信息，程序会输出该学生的学号、姓名、年龄和成绩。如果输入的学号和姓名与任何保存的学生信息不匹配，则程序会输出"查无此人"。（为了方便演示，此处使用了之前已经保存了的学生信息，此处跳过学生录入信息）
 
 
 
