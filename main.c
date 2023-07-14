@@ -43,6 +43,7 @@ int main() {
                 ModifyStudent();
                 break;
             case '8':   // 删除学生信息
+                DeleteStudent();
                 break;
             case '0':   // 退出系统
                 break;
@@ -226,4 +227,46 @@ void ModifyStudent() {
 
     if (p == NULL)
         printf("没有找到该学生信息.\n");
+}
+
+void DeleteStudent() {
+    char nStuNum[20];
+    printf("请输入要删除的学生的学号:\n");
+    scanf("%s", nStuNum);
+
+    Node *p1, *p2;
+
+    //判断是否为头节点
+    if (0 == strcmp(head->student.stuNum,nStuNum)) {
+        p1 = head;          //临时存放节点
+        head = head->next;
+        free(p1);
+        printf("学生信息删除成功.\n");
+//        system("pause");        //win暂停
+//        system("cls");          //清屏
+        return;
+    }
+
+    //不是头节点
+    Node *p = head;
+    while (p->next != NULL) {
+        if (0 == strcmp(p->next->student.stuNum, nStuNum)){
+            p2 = p->next;
+            p->next = p->next->next;
+            free(p2);
+            printf("学生信息删除成功.\n");
+//        system("pause");        //win暂停
+//        system("cls");          //清屏
+            return;
+        }
+        p = p->next;
+
+        if (p->next == NULL){
+            break;
+        }
+    }
+
+    if (p->next ==NULL){
+        printf("没有找到该学生.\n");
+    }
 }
