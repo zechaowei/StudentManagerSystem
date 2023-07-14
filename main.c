@@ -46,11 +46,16 @@ int main() {
                 DeleteStudent();
                 break;
             case '0':   // 退出系统
+                sayGoodbye();
+                exit(0);
+            default:
+                printf("您的输入有无，请重新输入.\n");
+//                system("pause");        //win暂停
+//                system("cls");          //win清屏
                 break;
         }
     }
 }
-
 
 void Welcome() {
     printf("*************************************\n");
@@ -237,7 +242,7 @@ void DeleteStudent() {
     Node *p1, *p2;
 
     //判断是否为头节点
-    if (0 == strcmp(head->student.stuNum,nStuNum)) {
+    if (0 == strcmp(head->student.stuNum, nStuNum)) {
         p1 = head;          //临时存放节点
         head = head->next;
         free(p1);
@@ -250,7 +255,7 @@ void DeleteStudent() {
     //不是头节点
     Node *p = head;
     while (p->next != NULL) {
-        if (0 == strcmp(p->next->student.stuNum, nStuNum)){
+        if (0 == strcmp(p->next->student.stuNum, nStuNum)) {
             p2 = p->next;
             p->next = p->next->next;
             free(p2);
@@ -261,12 +266,21 @@ void DeleteStudent() {
         }
         p = p->next;
 
-        if (p->next == NULL){
+        if (p->next == NULL) {
             break;
         }
     }
 
-    if (p->next ==NULL){
+    if (p->next == NULL) {
         printf("没有找到该学生.\n");
     }
+}
+
+void sayGoodbye() {
+    printf("Goodbye!\n");
+    printf("   ____        _\n");
+    printf("  / __ )____  (_)___  ____  _____\n");
+    printf(" / __  / __ \\/ / __ \\/ __ \\/ ___/\n");
+    printf("/ /_/ / /_/ / / /_/ / /_/ (__  ) \n");
+    printf("\\____/\\____/_/\\____/\\____/____/  \n");
 }
