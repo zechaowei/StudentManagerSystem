@@ -40,6 +40,7 @@ int main() {
                 break;
             }
             case '7':   // 修改学生信息
+                ModifyStudent();
                 break;
             case '8':   // 删除学生信息
                 break;
@@ -205,4 +206,24 @@ Node *FindStudent() {
     }
 
     return NULL;
+}
+
+void ModifyStudent() {
+    char nStuNum[20];
+    printf("请输入需要修改的学生信息的学号：\n");
+    scanf("%s", nStuNum);
+
+    Node *p = head;
+    while (p != NULL) {
+        if (0 == strcmp(p->student.stuNum, nStuNum)) {
+            printf("请输入需要修改的学生的姓名 年龄 成绩：\n");
+            scanf("%s %d %d", p->student.name, &p->student.age, &p->student.score);
+            printf("修改成功.\n");
+            break;
+        }
+        p = p->next;
+    }
+
+    if (p == NULL)
+        printf("没有找到该学生信息.\n");
 }

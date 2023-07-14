@@ -32,3 +32,4 @@ void SaveStudent();         //保存学生信息
 void ReadStudent();         //读取学生信息
 int CountStudent();         //统计所有学生人数
 Node* FindStudent();        //查找学生
+void ModifyStudent();       //修改学生信息
